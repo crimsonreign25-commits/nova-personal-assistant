@@ -1,0 +1,3 @@
+const templates = { ecommerce: ['src/pages/Home.jsx','src/pages/Product.jsx','src/components/Cart.jsx'], blog: ['src/pages/Posts.jsx','src/pages/Post.jsx','src/content/posts.js'], portfolio: ['src/pages/About.jsx','src/pages/Projects.jsx','src/pages/Contact.jsx'], saas: ['src/pages/Dashboard.jsx','src/components/Sidebar.jsx','src/api/client.js'], mobile: ['App.js','src/screens/HomeScreen.js'], api: ['src/server.js','src/routes/health.js','src/middleware/errors.js'] };
+export function listTemplates() { return Object.entries(templates).map(([id, files]) => ({ id, name: `${id} starter`, files })); }
+export function getTemplate(id) { return templates[id] || null; }

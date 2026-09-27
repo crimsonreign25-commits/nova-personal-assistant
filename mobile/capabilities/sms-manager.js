@@ -1,0 +1,1 @@
+export class SmsManager { constructor(adapter = null) { this.adapter = adapter; } async send(to, body) { if (!this.adapter?.send) throw new Error('SMS adapter not configured'); return this.adapter.send(to, body); } async read() { if (!this.adapter?.read) throw new Error('SMS adapter not configured'); return this.adapter.read(); } }

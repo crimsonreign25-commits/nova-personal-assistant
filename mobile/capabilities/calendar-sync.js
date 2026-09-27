@@ -1,0 +1,1 @@
+export class CalendarSync { constructor(adapter = null) { this.adapter = adapter; } async list(range) { if (!this.adapter?.list) throw new Error('Calendar adapter not configured'); return this.adapter.list(range); } async create(event) { if (!this.adapter?.create) throw new Error('Calendar adapter not configured'); return this.adapter.create(event); } }

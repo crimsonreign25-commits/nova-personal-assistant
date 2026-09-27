@@ -1,0 +1,1 @@
+export class MobileBridge { constructor({ adapter = null } = {}) { this.adapter = adapter; } capabilities() { return ['contacts','sms','calls','calendar','photos','files','notifications']; } async requestPermission(capability) { if (!this.adapter?.requestPermission) return { capability, status: 'unconfigured' }; return this.adapter.requestPermission(capability); } }

@@ -1,0 +1,1 @@
+export class PhotoOrganizer { constructor(adapter = null) { this.adapter = adapter; } async findDuplicates() { if (!this.adapter?.findDuplicates) throw new Error('Photo adapter not configured'); return this.adapter.findDuplicates(); } }

@@ -1,0 +1,1 @@
+export class CallManager { constructor(adapter = null) { this.adapter = adapter; } async dial(number) { if (!this.adapter?.dial) throw new Error('Call adapter not configured'); return this.adapter.dial(number); } }

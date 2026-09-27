@@ -1,0 +1,1 @@
+export class ContactSync { constructor(adapter = null) { this.adapter = adapter; } async list() { if (!this.adapter?.list) throw new Error('Contacts adapter not configured'); return this.adapter.list(); } }

@@ -1,0 +1,1 @@
+export class FileManager { constructor(adapter = null) { this.adapter = adapter; } async list(path) { if (!this.adapter?.list) throw new Error('File adapter not configured'); return this.adapter.list(path); } }
