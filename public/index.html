@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NOVA 2</title>
+  <style>
+    body { font-family: system-ui; background:#0a0a0a; color:#fff; margin:0; padding:20px }
+    .container { max-width:800px; margin:0 auto } h1 { background:linear-gradient(90deg,#00d4ff,#7b2cbf); -webkit-background-clip:text; -webkit-text-fill-color:transparent }
+    .chat { background:rgba(255,255,255,.05); border-radius:16px; padding:20px; height:60vh; overflow-y:auto; margin:20px 0 }
+    .message { padding:10px 15px; margin:10px 0; border-radius:12px; max-width:80% } .user { background:#00d4ff; color:#000; margin-left:auto } .assistant { background:rgba(255,255,255,.1) }
+    .input-area { display:flex; gap:10px } input { flex:1; padding:15px; border-radius:12px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.05); color:#fff } button { padding:15px 30px; background:linear-gradient(135deg,#00d4ff,#7b2cbf); border:0; border-radius:12px; color:#fff; cursor:pointer }
+  </style>
+</head>
+<body><div class="container"><h1>NOVA 2</h1><div class="chat" id="chat"><div class="message assistant">At your service. What would you like to accomplish?</div></div><div class="input-area"><input type="text" id="input" placeholder="Ask me anything..."><button id="send">Send</button></div></div>
+<script>
+  const input = document.getElementById('input');
+  document.getElementById('send').addEventListener('click', send);
+  input.addEventListener('keypress', event => { if (event.key === 'Enter') send(); });
+  async function send() { const text = input.value.trim(); if (!text) return; addMessage(text, 'user'); input.value = ''; try { const res = await fetch('/assist', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message:text,user_id:'user1'}) }); const data = await res.json(); addMessage(data.response || data.error || 'No response received.', 'assistant'); } catch { addMessage('Unable to contact NOVA.', 'assistant'); } }
+  function addMessage(text, role) { const div = document.createElement('div'); div.className = `message ${role}`; div.textContent = text; const chat = document.getElementById('chat'); chat.appendChild(div); chat.scrollTop = chat.scrollHeight; }
+</script></body></html>
